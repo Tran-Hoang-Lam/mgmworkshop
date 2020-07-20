@@ -4,7 +4,7 @@ metadata:
   labels:
     kubernetes.io/name: rabbit-mq
   name: rabbit-mq
-  namespace: lhtran
+  namespace: demo
 spec:
   ports:
     - port: 5672

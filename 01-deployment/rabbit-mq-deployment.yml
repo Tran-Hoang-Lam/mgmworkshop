@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbit-mq
-  namespace: lhtran
+  namespace: demo
 spec:
   strategy:
     type: RollingUpdate

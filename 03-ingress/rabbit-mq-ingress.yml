@@ -2,12 +2,12 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: rabbit-dashboard
-  namespace: lhtran
+  namespace: demo
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`lhtran-rabbit-dashboard.mgmworkshop.com`)
+    - match: Host(`demo-rabbit-dashboard.mgmworkshop.com`)
       kind: Rule
       services:
         - name: rabbit-mq
