@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: rabbit-mq
   namespace: demo
+  labels: &labels
+    app: rabbit-mq
 spec:
   strategy:
     type: RollingUpdate
@@ -11,12 +13,10 @@ spec:
       maxSurge: 1
   replicas: 1
   selector:
-    matchLabels:
-      app: rabbit-mq
+    matchLabels: *labels
   template:
     metadata:
-      labels:
-        app: rabbit-mq
+      labels: *labels
     spec:
       containers:
         - image: rabbitmq:3-management
