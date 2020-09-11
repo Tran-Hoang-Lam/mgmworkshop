@@ -1,16 +1,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: rabbit-dashboard
+  name: web-route
   namespace: demo # TODO: change namespace
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`demo-rabbit-dashboard.mgmworkshop.com`)
+    - match: Host(`demo.mgmworkshop.com`)
       kind: Rule
       services:
-        - name: rabbit-mq
-          port: 15672
+        - name: web-service
+          port: 80
   tls:
     certResolver: default

@@ -4,7 +4,7 @@ metadata:
   labels:
     kubernetes.io/name: rabbit-mq
   name: rabbit-mq
-  namespace: demo
+  namespace: demo # TODO: change namespace
 spec:
   ports:
     - port: 5672

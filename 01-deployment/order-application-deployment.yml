@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-application
+  namespace: demo # TODO: change namespace
+  labels: &labels
+    app: order-application
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  replicas: 3
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+        - image: lamth2/order-application:v1.1
+          name: order-application
+          args:
+            - --spring.profiles.active=k8s
+          env:
+            - name: RABBIT_HOST
+              value: 0.0.0.0 # TODO: correct rabbit ip pod
+            - name: RABBIT_PORT
+              value: "1234" # TODO: correct rabbit port
+            - name: RABBIT_USERNAME
+              value: username # TODO: correct rabbit username
+            - name: RABBIT_PASSWORD
+              value: passwrod # TODO: correct rabbit password
+          ports:
+            - containerPort: 8080

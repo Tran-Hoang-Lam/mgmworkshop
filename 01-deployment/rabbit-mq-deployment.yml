@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbit-mq
-  namespace: demo
+  namespace: demo # TODO: change namespace
   labels: &labels
     app: rabbit-mq
 spec:
