@@ -11,7 +11,7 @@ spec:
     rollingUpdate:
       maxUnavailable: 0
       maxSurge: 1
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: *labels
   template:
@@ -19,7 +19,7 @@ spec:
       labels: *labels
     spec:
       containers:
-        - image: lamth2/order-application:v1.1
+        - image: lamth2/order-application:v0.1
           name: order-application
           args:
             - --spring.profiles.active=k8s
