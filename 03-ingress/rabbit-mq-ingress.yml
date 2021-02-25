@@ -1,16 +1,18 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
   name: rabbit-dashboard
-  namespace: demo # TODO: change namespace
+  namespace: demo
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: default
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`demo-rabbit-dashboard.mgmworkshop.com`)
-      kind: Rule
-      services:
-        - name: rabbit-mq
-          port: 15672
-  tls:
-    certResolver: default
+  rules:
+    - host: rabbit-dashboard.mgmworkshop.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rabbit-mq
+              servicePort: 15672
